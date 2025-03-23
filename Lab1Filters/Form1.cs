@@ -99,5 +99,52 @@ namespace Lab1Filters
             Filters filter = new IncreaseBrightnessFilter();
             backgroundWorker1.RunWorkerAsync(filter);
         }
+
+        private void фильтрСобеляToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new SobelFilter();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void повыситьРезкостьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filters filter = new SharpnessFilter();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (image != null)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp";
+                saveFileDialog.Title = "Сохранить изображение";
+                saveFileDialog.FileName = "image"; 
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    switch (saveFileDialog.FilterIndex)
+                    {
+                        case 1:
+                            image.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+                            break;
+                        case 2:
+                            image.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            break;
+                        case 3:
+                            image.Save(filePath, System.Drawing.Imaging.ImageFormat.Bmp);
+                            break;
+                    }
+
+                    MessageBox.Show("Изображение успешно сохранено!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нет изображения для сохранения.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
