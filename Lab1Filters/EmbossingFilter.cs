@@ -4,19 +4,22 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Lab1Filters
 {
-    internal class MatrixFilter: Filters
+    internal class EmbossingFilter: MatrixFilter
     {
-        protected float[,] kernel = null;
-        protected MatrixFilter () { }
-        public MatrixFilter (float[,] kernel)
+        private float[,] embossingKernel = new float[,]
         {
-            this.kernel = kernel;
+            {0, 1, 0 },
+            {-1, 0, 1 },
+            { 0, -1, 0 }
+        };
+        
+        public EmbossingFilter()
+        {
+            kernel = embossingKernel;
         }
-
         public override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
             int radiusX = kernel.GetLength(0) / 2;
@@ -34,6 +37,9 @@ namespace Lab1Filters
                     resultB += neighbourColor.B * kernel[k + radiusX, l + radiusY];
                 }
             }
+            resultR = Clamp((int)resultR + 100);
+            resultG = Clamp((int)resultG + 100);
+            resultB = Clamp((int)resultB + 100);
             return Color.FromArgb(Clamp((int)resultR), Clamp((int)resultG), Clamp((int)resultB));
         }
     }

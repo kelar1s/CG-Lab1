@@ -9,7 +9,7 @@ namespace Lab1Filters
 {
     class IncreaseBrightnessFilter : Filters
     {
-        protected override Color calcualteNewPixelColor(Bitmap sourceImage, int x, int y)
+        public override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
             Color sourceColor = sourceImage.GetPixel(x, y);
             const int cnst = 50;

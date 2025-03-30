@@ -10,7 +10,7 @@ namespace Lab1Filters
 {
     public abstract class Filters
     {
-        public Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+        public virtual Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
         {
             Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
             for(int i = 0; i < sourceImage.Width; i++)
@@ -22,16 +22,16 @@ namespace Lab1Filters
                 }
                 for(int j = 0; j < sourceImage.Height; j++)
                 {
-                    resultImage.SetPixel(i, j, calcualteNewPixelColor(sourceImage, i, j));
+                    resultImage.SetPixel(i, j, calculateNewPixelColor(sourceImage, i, j));
                 }
             }
 
             return resultImage;
         }
 
-        protected abstract Color calcualteNewPixelColor(Bitmap sourceImage, int x, int y);
+        public abstract Color calculateNewPixelColor(Bitmap sourceImage, int x, int y);
 
-        public int Clamp(int value, int min, int max)
+        public int Clamp(int value, int min = 0, int max = 255)
         {
             if(value < min)
             {

@@ -13,7 +13,7 @@ namespace Lab1Filters
         protected float[,] kernelX;
         protected float[,] kernelY;
 
-        protected override Color calcualteNewPixelColor(Bitmap sourceImage, int x, int y)
+        public override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
             float xR = 0, xG = 0, xB = 0;
             float yR = 0, yG = 0, yB = 0;

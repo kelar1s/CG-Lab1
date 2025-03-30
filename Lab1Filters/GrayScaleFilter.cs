@@ -9,7 +9,7 @@ namespace Lab1Filters
 {
     class GrayScaleFilter : Filters
     {
-        protected override Color calcualteNewPixelColor(Bitmap sourceImage, int x, int y)
+        public override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
             Color sourceColor = sourceImage.GetPixel(x, y);
             double intensity = (0.36 * sourceColor.R + 0.53 * sourceColor.G + 0.11 * sourceColor.B);
