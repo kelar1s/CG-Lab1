@@ -16,6 +16,7 @@ namespace Lab1Filters
         public override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
             int posX, posY;
+            //хранение значений R, G, B компонент пикселей в области действия структурного элемента
             List<int> redChanel = new List<int>();
             List<int> greenChanel = new List<int>();
             List<int> blueChanel = new List<int>();

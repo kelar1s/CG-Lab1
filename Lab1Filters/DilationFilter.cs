@@ -9,13 +9,14 @@ namespace Lab1Filters
 {
     internal class DilationFilter:MorphologyFilters
     {
-        public DilationFilter(structElement mode = structElement.Cube, int sz = 3) : base(mode, sz)
+        public DilationFilter(structElement se = structElement.Cube, int sz = 3) : base(se, sz)
         {
 
         }
         public override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
             int posX, posY;
+            //хранение значений R, G, B компонент пикселей в области действия структурного элемента
             List<int> redChanel = new List<int>();
             List<int> greenChanel = new List<int>();
             List<int> blueChanel = new List<int>();
@@ -25,6 +26,7 @@ namespace Lab1Filters
                 {
                     posX = Clamp(x + i, 0, sourceImage.Width - 1);
                     posY = Clamp(y + j, 0, sourceImage.Height - 1);
+                    //является ли текущая позиция частью структурного элемента
                     if (kernel[i + radius, j + radius])
                     {
                         redChanel.Add(sourceImage.GetPixel(posX, posY).R);

@@ -344,5 +344,19 @@ namespace Lab1Filters
             Filters filter = new GrayWorldFilter();
             backgroundWorker1.RunWorkerAsync(filter);
         }
+
+        private void заданиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetBusy(true);
+            Filters filter = new Assignment(15);
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void задание2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetBusy(true);
+            Filters filter = new Assignment2();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
     }
 }

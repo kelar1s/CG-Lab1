@@ -16,12 +16,12 @@ namespace Lab1Filters
     {
         protected bool[,] kernel;
         protected int size, radius;
-        public MorphologyFilters(structElement mode = structElement.Cube, int sz = 3)
+        public MorphologyFilters(structElement se = structElement.Cube, int sz = 3)
         {
             size = (sz % 2 == 0) ? sz + 1 : sz;
             radius = size / 2;
             kernel = new bool[size, size];
-            switch (mode)
+            switch (se)
             {
                 case structElement.Cross:
                     for (int i = 0; i < size; i++)

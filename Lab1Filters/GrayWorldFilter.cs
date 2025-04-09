@@ -18,10 +18,7 @@ namespace Lab1Filters
             int pixelR = (int)((pixel.R * avg) / allR);
             int pixelG = (int)((pixel.G * avg) / allG);
             int pixelB = (int)((pixel.B * avg) / allB);
-            if (pixelR > 255) pixelR = 255;
-            if (pixelG > 255) pixelG = 255;
-            if (pixelB > 255) pixelB = 255;
-            Color nPixel = Color.FromArgb(pixelR, pixelG, pixelB);
+            Color nPixel = Color.FromArgb(Clamp(pixelR), Clamp(pixelG), Clamp(pixelB));
             return nPixel;
         }
         public override Bitmap processImage(Bitmap image, BackgroundWorker worker)
